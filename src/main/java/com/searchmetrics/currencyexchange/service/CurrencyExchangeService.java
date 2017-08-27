@@ -40,7 +40,7 @@ public class CurrencyExchangeService {
             rateRepository.save(rate);
         } catch (IOException e) {
             LOG.error("Error trying to get currency exchange from external service.", e);
-        }        
+        }
         LOG.info("Exit checkCurrenyExchange()");
     }
 
