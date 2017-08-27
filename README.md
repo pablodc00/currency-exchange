@@ -1,5 +1,5 @@
 # currency-exchange project
-Searchmetrics challenge
+
 
 
 ## To run project type:
