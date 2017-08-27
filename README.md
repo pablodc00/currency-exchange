@@ -4,6 +4,7 @@ Searchmetrics challenge
 
 ## To run project type:
 mvn spring-boot:run
+or open the project with any IDE and just Run As Java Appliction class CurrencyExchangeApplication.java
 
 
 ## Project specs
