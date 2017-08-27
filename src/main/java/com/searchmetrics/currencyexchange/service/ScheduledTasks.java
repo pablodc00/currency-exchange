@@ -10,7 +10,7 @@ public class ScheduledTasks {
     @Autowired
     private CurrencyExchangeService currencyExchangeService;
     
-    @Scheduled(fixedDelayString = "${fixed.delay.prop}")
+    @Scheduled(fixedDelayString = "${fixed.delay:1000}")
     public void checkCurrenyExchange() {
         currencyExchangeService.checkCurrenyExchange();
     }

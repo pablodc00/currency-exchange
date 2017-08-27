@@ -26,6 +26,12 @@ public class CurrencyExchangeController {
     @Autowired
     private CurrencyExchangeService currencyExchangeService;
     
+    @RequestMapping("/all")
+    public ResponseEntity<List<Rate>> getAll() {
+        List<Rate> rates = currencyExchangeService.getAll();
+        return new ResponseEntity<>(rates, HttpStatus.OK);
+    }
+    
     @RequestMapping("/latestrate")
     public ResponseEntity<Rate> latestRate() {
         LOG.info("Calling /latestrate");
@@ -38,6 +44,7 @@ public class CurrencyExchangeController {
         }
         
         if (null == rate) {
+            LOG.info("/latestrate there is not content");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         
@@ -49,16 +56,18 @@ public class CurrencyExchangeController {
     public ResponseEntity<List<Rate>> historicalRates(@RequestParam(value="startdate") String startDate,
             @RequestParam(value="enddate") String endDate) {
 
+        LOG.info("Calling /historicalrates with startDate:{} and endDate:{}", startDate, endDate);
+        
         Date ldStartDate;
         Date ldEndDate;
-        List<Rate> rates;        
-        
-        LOG.info("Calling /historicalrates with startDate:{} and endDate:{}", startDate, endDate);
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        List<Rate> rates;
 
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
         try {
             ldStartDate = df.parse(startDate);
             ldEndDate = df.parse(endDate);
+
         } catch (ParseException e) {
             LOG.error("Bad request parameters, startdate:{}, endDate:{}", startDate, endDate, e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -72,6 +81,7 @@ public class CurrencyExchangeController {
         }
        
        if (rates.isEmpty()) {
+           LOG.info("/historicalrates with startDate:{} and endDate:{} there is not content", startDate, endDate);
            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
        }
        

@@ -9,6 +9,7 @@ import com.searchmetrics.currencyexchange.model.Rate;
 
 public interface RateRepository extends CrudRepository<Rate, Long> {
 
+    Rate findTopByOrderByDateDesc();
     
-    List<Rate> findByStartDateGreaterThanEqualAndEndDateLessThanEqual(Date startDate, Date endDate);
+    List<Rate> findByDateGreaterThanEqualAndDateLessThanEqual(Date startDate, Date endDate);
 }
