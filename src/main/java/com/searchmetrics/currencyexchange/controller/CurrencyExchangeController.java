@@ -19,6 +19,7 @@ import com.searchmetrics.currencyexchange.model.Rate;
 import com.searchmetrics.currencyexchange.service.CurrencyExchangeService;
 
 @RestController
+@RequestMapping("/currency-exchange")
 public class CurrencyExchangeController {
 
     private static Logger LOG = LoggerFactory.getLogger(CurrencyExchangeController.class);
@@ -26,13 +27,13 @@ public class CurrencyExchangeController {
     @Autowired
     private CurrencyExchangeService currencyExchangeService;
     
-    @RequestMapping("/all")
+    @RequestMapping("/v1/all")
     public ResponseEntity<List<Rate>> getAll() {
         List<Rate> rates = currencyExchangeService.getAll();
         return new ResponseEntity<>(rates, HttpStatus.OK);
     }
     
-    @RequestMapping("/latestrate")
+    @RequestMapping("/v1/latestrate")
     public ResponseEntity<Rate> latestRate() {
         LOG.info("Calling /latestrate");
         Rate rate;
@@ -52,7 +53,7 @@ public class CurrencyExchangeController {
     }
 
 
-    @RequestMapping("/historicalrates")
+    @RequestMapping("/v1/historicalrates")
     public ResponseEntity<List<Rate>> historicalRates(@RequestParam(value="startdate") String startDate,
             @RequestParam(value="enddate") String endDate) {
 

@@ -23,10 +23,20 @@ thus we don't need to restart the application in order to changes take effect.
 ## Examples endpoints
 
 ### 1) Get latest rate
-http://localhost:8080/latestrate
+http://localhost:8080/currency-exchange/v1/latestrate
 
 ### 2) Get historical rates from startDate to endDate
-http://localhost:8080/historicalrates?startdate=2017-07-25&enddate=2017-09-01
+http://localhost:8080/currency-exchange/v1/historicalrates?startdate=2017-07-25&enddate=2017-09-01
 
 ### 3) Get all (just for test)
-http://localhost:8080/all
+http://localhost:8080/currency-exchange/v1/all
+
+
+## API documetation (with Swagger)
+You can check API Documentation at this URL:
+http://localhost:8080/swagger-ui.html
+
+## Database console
+I'm using H2 Database embebed
+You can explore and perform queries at this URL:
+http://localhost:8080/console
